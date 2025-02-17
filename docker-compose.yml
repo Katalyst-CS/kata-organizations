@@ -4,11 +4,11 @@ services:
     image: postgres:15
     container_name: postgres
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: organizations_db
     ports:
-      - "5432:5432"
+      - "6000:5432" #Cambiar posteriormente a 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -38,7 +38,7 @@ services:
       RABBITMQ_DEFAULT_PASS: password
     ports:
       - "5672:5672"    # RabbitMQ Broker Port
-      - "15672:15672"  # RabbitMQ Management UI
+      - "15672:15672"  # RabbitMQ Management UI"""
     networks:
       - app_network
 
