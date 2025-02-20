@@ -23,7 +23,6 @@ class OrganizationService:
         return org
 
     def update_organization(self, org_id, data):
-
         updated_org = self.repository.update(org_id, data)
         if not updated_org:
             raise OrganizationNotFoundException(f"No se pudo actualizar la organización con ID {org_id}.")
