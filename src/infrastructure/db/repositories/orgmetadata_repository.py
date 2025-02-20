@@ -11,7 +11,6 @@ class OrgMetadataRepository:
         meta.save()
         return meta
 
-
     # Listar metadatos
     def get_all(self):
         return list(OrgMetadata.select())
@@ -20,17 +19,16 @@ class OrgMetadataRepository:
     def get_by_id(self, meta_id):
 
         try:
-            OrgMetadata.get(OrgMetadata.id == meta_id)
+            return OrgMetadata.get(OrgMetadata.id == meta_id)
         except DoesNotExist:
             return None
 
     # Actualizar metadato
     def update(self, meta_id, data):
-
-        meta = OrgMetadata.select(OrgMetadata.id == meta_id)
+        meta = self.get_by_id(meta_id)
         if not meta:
             return None
-
+        #Actualizacion de campos
         query = OrgMetadata.update(**data).where(OrgMetadata.id == meta_id)
         query.execute()
         return self.get_by_id(meta_id)
