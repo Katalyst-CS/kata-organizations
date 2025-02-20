@@ -1,52 +1,15 @@
 services:
   # PostgreSQL Service
-  postgres:
-    image: postgres:15
-    container_name: postgres
+  db:
+    image: postgres
+    container_name: kata-organizations-service
     environment:
       POSTGRES_USER: postgres_user
       POSTGRES_PASSWORD: postgres_password
       POSTGRES_DB: organizations_db
     ports:
       - "6000:5432" #Cambiar posteriormente a 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - app_network
 
-  # pgAdmin Service
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
-    ports:
-      - "8080:80"
-    depends_on:
-      - postgres
-    networks:
-      - app_network
-
-  # RabbitMQ Service 
-  # Comentar si no se usa
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: user
-      RABBITMQ_DEFAULT_PASS: password
-    ports:
-      - "5672:5672"    # RabbitMQ Broker Port
-      - "15672:15672"  # RabbitMQ Management UI"""
-    networks:
-      - app_network
-
-# Volumes
-volumes:
-  postgres_data:
-
-# Network
-networks:
-  app_network:
-    driver: bridge
+    #Descomentar para persistir datos.
+    #volumes:
+     # - postgres_data:/var/lib/postgresql/data
