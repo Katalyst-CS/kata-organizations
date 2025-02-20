@@ -7,7 +7,10 @@ class OrgMetadataRepository:
 
     # Crear un metadato
     def create(self, data):
-        return OrgMetadata(**data)
+        meta = OrgMetadata(**data)
+        meta.save()
+        return meta
+
 
     # Listar metadatos
     def get_all(self):
@@ -17,12 +20,11 @@ class OrgMetadataRepository:
     def get_by_id(self, meta_id):
 
         try:
-            OrgMetadata.select(OrgMetadata.id == meta_id)
+            OrgMetadata.get(OrgMetadata.id == meta_id)
         except DoesNotExist:
             return None
 
     # Actualizar metadato
-
     def update(self, meta_id, data):
 
         meta = OrgMetadata.select(OrgMetadata.id == meta_id)
@@ -35,7 +37,7 @@ class OrgMetadataRepository:
 
     # Borrar metadato
     def delete(self, meta_id):
-        meta = OrgMetadata.select(OrgMetadata.id == meta_id)
+        meta = self.get_by_id(meta_id)
         if meta:
             meta.delete_instance()
             return True
