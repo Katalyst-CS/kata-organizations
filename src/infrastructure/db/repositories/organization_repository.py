@@ -1,3 +1,5 @@
+from operator import truediv
+
 from peewee import DoesNotExist
 
 from src.infrastructure.db.models.organization_model import Organization
@@ -38,8 +40,8 @@ class OrganizationRepository:
     # Borrar una organizacion.
 
     def delete(self, org_id):
-        org = self.get_by_id(org_id)
-        if org:
-            org.delete_instance()
-            return True
-        return False
+       org = Organization.get_by_id(org_id)
+       if org:
+           org.delete_isntace()
+           return True
+       return False
