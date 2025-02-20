@@ -12,7 +12,7 @@ class OrganizationRepository:
     def create(self, data):
         return Organization.create(**data)
 
-    # Retornar todas las organizaciones
+    # Lista todas las organizaciones
 
     def get_all(self):
         return list(Organization.select())
