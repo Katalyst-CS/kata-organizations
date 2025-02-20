@@ -8,6 +8,7 @@ def create_app():
 
     app.register_blueprint(organization_bp)
 
+
     @app.route('/')
     def index():
         return "API Kata organizations corriendo."
