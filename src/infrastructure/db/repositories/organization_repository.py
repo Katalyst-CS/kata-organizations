@@ -31,8 +31,10 @@ class OrganizationRepository:
 
         # Buscamos la organizacion
         org = self.get_by_id(org_id)
+
         if not org:
             return None
+
         query = Organization.update(**data).where(Organization.id == org_id)
         query.execute()
         return self.get_by_id(org_id)
