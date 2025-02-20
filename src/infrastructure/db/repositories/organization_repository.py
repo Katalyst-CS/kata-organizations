@@ -1,3 +1,5 @@
+from peewee import DoesNotExist
+
 from src.infrastructure.db.models.organization_model import Organization
 
 
@@ -10,4 +12,34 @@ class OrganizationRepository:
     def create(self, data):
         return Organization.create(**data)
 
-    #
+    # Retornar todas las organizaciones
+
+    def get_all(self):
+        return list(Organization.select())
+
+    # Buscar organizacion por id
+    def get_by_id(self, org_id):
+        try:
+            Organization.select(Organization.id == org_id)
+        except DoesNotExist:
+            return None
+
+    # Actualizar organizacion
+    def update(self, org_id, data):
+
+        # Buscamos la organizacion
+        org = self.get_by_id(org_id)
+        if not org:
+            return None
+        query = Organization.update(**data).where(Organization.id == org_id)
+        query.execute()
+        return self.get_by_id(org_id)
+
+    # Borrar una organizacion.
+
+    def delete(self, org_id):
+        org = self.get_by_id(org_id)
+        if org:
+            org.delete_instance()
+            return True
+        return False
