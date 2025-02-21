@@ -1,18 +1,26 @@
-# Usa una imagen base de Python
-FROM python:3.10-slim
+# Usa una imagen oficial de Python como base
+FROM python:3.9-slim
 
-# Establece el directorio de trabajo
+# Evita la creación de archivos pyc y habilita el modo sin búfer
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copia los archivos de la aplicación
-COPY src/ /app/src
-COPY requirements.txt /app
+# Copia todos los archivos del proyecto al contenedor
+COPY . /app
 
-# Instala las dependencias
-RUN pip install --no-cache-dir -r requirements.txt
+# Actualiza pip e instala las dependencias
+RUN pip install --upgrade pip
+RUN pip install flask psycopg2-binary peewee python-dotenv
 
-# Expone el puerto de la aplicación
+# Variables de entorno para Flask
+ENV FLASK_APP=src/app.py
+ENV FLASK_ENV=development
+
+# Exponer el puerto 5000 para acceder a la app Flask
 EXPOSE 5000
 
-# Comando para ejecutar la aplicación
-CMD ["python", "/app/src/main.py"]
+# Comando para ejecutar la aplicación Flask
+CMD ["python", "src/app.py"]

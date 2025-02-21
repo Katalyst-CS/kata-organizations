@@ -37,7 +37,6 @@ def get_organization(org_id):
 
 # Ruta para actualizar una organizacion
 
-# Ruta para obtener una organizacion.
 @organization_bp.route('/organizations/<org_id>', methods=['PUT'])
 def update_organization(org_id):
     data = request.get_json()
