@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-    container_name: kata_auth_app
+    container_name: kata_organizations_app
     environment:
 
         - DB_NAME=organizations_db
@@ -25,7 +25,7 @@ services:
       POSTGRES_PASSWORD: postgres_password
       POSTGRES_DB: organizations_db
     ports:
-      - "6000:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
