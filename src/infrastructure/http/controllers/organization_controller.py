@@ -1,23 +1,26 @@
 from flask import Blueprint, request, jsonify
 
-from src.core.exceptions.OrganizationNotFoundException import OrganizationNotFoundException
-from src.core.services.organization_service import OrganizationService
+from core.exceptions.OrganizationNotFoundException import OrganizationNotFoundException
+from core.services.organization_service import OrganizationService
 
-# Creacion deun Blueprint para las rutas
+# Creacion de un objeto Blueprint. Flask lo utiliza para las rutas.
 organization_bp = Blueprint('organization_bp', __name__)
-# Instanciamos el servicio de organizacion para acceder a sus metodos.
-service = OrganizationService
+
+# Instanciamos el servicio de organización para acceder a sus métodos.
+service = OrganizationService()
 
 
-# Ruta para crear una organizacion
+# Ruta para crear una organización
 @organization_bp.route('/organizations', methods=['POST'])
 def create_organization():
     data = request.get_json()
-    try:
-        org = service.create_organization(data)
-        return jsonify({'message': 'Organizacion creada', 'id': str(org.id)}), 201
-    except ValueError as e:
-        return jsonify({'error': str(e)}), 400
+    print("Solicitud POST recibida en /organizations")  # Log para depuración
+    print("Datos recibidos:", data)
+    #try:
+     #   org = service.create_organization(data)
+      #  return jsonify({'message': 'Organización creada', 'id': str(org.id), 'name': org.name}), 201
+   # except ValueError as e:
+    #    return jsonify({'error': str(e)}), 400
 
 
 # Ruta para obtener la lista de todas las organizaciones.
@@ -28,11 +31,15 @@ def list_organizations():
     return jsonify(result), 200
 
 
-# Ruta para obtener una organizacion por Id.
+# Ruta para obtener una organización por Id.
 @organization_bp.route('/organizations/<org_id>', methods=['GET'])
 def get_organization(org_id):
-    org = service.get_organization(org_id)
-    return jsonify({'id': org.id, 'name': org.name}), 200
+    try:
+        org = service.get_organization(org_id)
+        return jsonify({'id': org.id, 'name': org.name}), 200
+
+    except OrganizationNotFoundException as e:
+        return jsonify({'error': str(e)}), 404
 
 
 # Ruta para actualizar una organizacion
@@ -49,7 +56,7 @@ def update_organization(org_id):
 
 # Ruta para borrar una organizacion
 
-@organization_bp.route('/organizations/<uuid:org_id>', methods=['DELETE'])
+@organization_bp.route('/organizations/<org_id>', methods=['DELETE'])
 def delete_organization(org_id):
     try:
         service.delete_organization(org_id)

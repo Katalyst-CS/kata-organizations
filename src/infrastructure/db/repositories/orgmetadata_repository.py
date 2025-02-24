@@ -1,6 +1,6 @@
 from peewee import DoesNotExist
 
-from src.infrastructure.db.models.org_metadata_model import OrgMetadata
+from infrastructure.db.models.org_metadata_model import OrgMetadata
 
 
 class OrgMetadataRepository:

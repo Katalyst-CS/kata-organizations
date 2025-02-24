@@ -1,6 +1,6 @@
-from src.infrastructure.db.database import db
-from src.infrastructure.db.models.org_metadata_model import OrgMetadata
-from src.infrastructure.db.models.organization_model import Organization
+from infrastructure.db.database import db
+from infrastructure.db.models.org_metadata_model import OrgMetadata
+from infrastructure.db.models.organization_model import Organization
 
 
 def initialize_db():

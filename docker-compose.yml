@@ -1,19 +1,25 @@
 
 services:
-  web:
-    build:
-      context: .
-    container_name: flask_app
-    ports:
-      - "5000:5000"
-    env_file:
-      - src/.env
-    depends_on:
-      - db
-    volumes:
-      - .:/app
-    working_dir: /app/src
-    command: python app.py
+  #web:
+#  build:
+#    context: .
+#   container_name: kata_organizations_app
+#   environment:
+#     - DB_NAME=organizations_db
+#      - DB_USER=postgres_user
+#    - DB_PASSWORD=postgres_password
+#   - DB_HOST=db
+#  - DB_PORT=5432
+#    ports:
+#      - "5000:5000"
+#    env_file:
+#      - .env
+#   depends_on:
+#      - db
+#    volumes:
+#      - .:/app
+#    working_dir: /app/src
+#    command: python app.py --host=0.0.0.0
 
   db:
     image: postgres

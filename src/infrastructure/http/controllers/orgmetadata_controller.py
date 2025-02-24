@@ -2,8 +2,8 @@ import uuid
 
 from flask import Blueprint, jsonify, request
 
-from src.core.exceptions.MetadataNotFoundException import MetadataNotFoundException
-from src.core.services.orgmetadata_service import OrgMetadataService
+from core.exceptions.MetadataNotFoundException import MetadataNotFoundException
+from core.services.orgmetadata_service import OrgMetadataService
 
 # Aqui se inclyen todos los endpoints
 

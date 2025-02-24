@@ -2,7 +2,7 @@ from operator import truediv
 
 from peewee import DoesNotExist
 
-from src.infrastructure.db.models.organization_model import Organization
+from infrastructure.db.models.organization_model import Organization
 
 
 #En el repositorio incluimos las operaciones CRUD
@@ -22,7 +22,7 @@ class OrganizationRepository:
     # Buscar organizacion por id
     def get_by_id(self, org_id):
         try:
-            Organization.select(Organization.id == org_id)
+            Organization.select().where(Organization.id == org_id)
         except DoesNotExist:
             return None
 

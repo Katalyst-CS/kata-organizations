@@ -1,5 +1,5 @@
-from src.core.exceptions.OrganizationNotFoundException import OrganizationNotFoundException
-from src.infrastructure.db.repositories.organization_repository import OrganizationRepository
+from core.exceptions.OrganizationNotFoundException import OrganizationNotFoundException
+from infrastructure.db.repositories.organization_repository import OrganizationRepository
 
 
 # En esta clase utilizaremos los metodos del repository

@@ -3,8 +3,8 @@ from datetime import datetime
 
 from peewee import Model, UUIDField, CharField, TextField, DateTimeField, ForeignKeyField, TimestampField
 
-from src.infrastructure.db.database import db
-from src.infrastructure.db.models.organization_model import Organization
+from infrastructure.db.database import db
+from infrastructure.db.models.organization_model import Organization
 
 
 # Modelo para ORG_METADATA

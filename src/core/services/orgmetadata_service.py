@@ -1,5 +1,5 @@
-from src.core.exceptions.MetadataNotFoundException import MetadataNotFoundException
-from src.infrastructure.db.repositories.orgmetadata_repository import OrgMetadataRepository
+from core.exceptions.MetadataNotFoundException import MetadataNotFoundException
+from infrastructure.db.repositories.orgmetadata_repository import OrgMetadataRepository
 
 
 class OrgMetadataService():
