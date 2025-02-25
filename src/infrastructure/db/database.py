@@ -18,4 +18,4 @@ try:
     db.connect(reuse_if_open=True)
     print("Conexion realizada con exito")
 except Exception as e:
-    print(f"error conectando a la base de datos.{e}")
+    print(f"Error conectando a la base de datos.{e}")
